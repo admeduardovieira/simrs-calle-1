@@ -81,12 +81,8 @@ MASKED_RE = re.compile(r"(\+\d{1,3})\d+(\d{4})")
 def get_ssl_context() -> ssl.SSLContext:
     """Return SSL context (compatible with container environments)."""
     ctx = ssl.create_default_context()
-    try:
-        ctx.check_hostname = True
-        ctx.verify_mode = ssl.CERT_REQUIRED
-    except Exception:
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
+    ctx.check_hostname = True
+    ctx.verify_mode = ssl.CERT_REQUIRED
     return ctx
 
 
